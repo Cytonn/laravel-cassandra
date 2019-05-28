@@ -1,9 +1,9 @@
 <?php
 
-namespace lroman242\LaravelCassandra\Query;
+namespace Cytonn\Cassandra\Query;
 
-use lroman242\LaravelCassandra\Collection;
-use lroman242\LaravelCassandra\Connection;
+use Cytonn\Cassandra\Collection;
+use Cytonn\Cassandra\Connection;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Illuminate\Support\Arr;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace lroman242\LaravelCassandra;
+namespace Cytonn\Cassandra;
 
 use Cassandra;
 use Cassandra\BatchStatement;

@@ -1,5 +1,5 @@
 {
-    "name": "lroman242/laravel-cassandra",
+    "name": "cytonn/cassandra",
     "description": "A Cassandra based Eloquent model and Query builder for Laravel (Casloquent)",
     "keywords": ["laravel","eloquent","cassandra","csql","database","model","casloquent"],
     "homepage": "https://github.com/lroman242/laravel-cassandra",
@@ -25,7 +25,9 @@
         "satooshi/php-coveralls": "^1.0"
     },
     "autoload": {
-        "psr-4": { "lroman242\\LaravelCassandra\\" : "src/" }
+        "psr-4": {
+            "Cytonn\\Cassandra" : "src/"
+        }
     },
     "autoload-dev": {
         "classmap": [

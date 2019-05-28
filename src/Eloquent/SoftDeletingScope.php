@@ -1,6 +1,6 @@
 <?php
 
-namespace lroman242\LaravelCassandra\Eloquent;
+namespace Cytonn\Cassandra\Eloquent;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;

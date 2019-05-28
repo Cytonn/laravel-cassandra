@@ -1,12 +1,12 @@
 <?php
 
-namespace lroman242\LaravelCassandra\Eloquent;
+namespace Cytonn\Cassandra\Eloquent;
 
 use Carbon\Carbon;
 use Cassandra\Rows;
 use Cassandra\Timestamp;
-use lroman242\LaravelCassandra\Collection;
-use lroman242\LaravelCassandra\Query\Builder as QueryBuilder;
+use Cytonn\Cassandra\Collection;
+use Cytonn\Cassandra\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 use Illuminate\Support\Str;
 

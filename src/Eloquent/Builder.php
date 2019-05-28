@@ -1,9 +1,9 @@
 <?php
 
-namespace lroman242\LaravelCassandra\Eloquent;
+namespace Cytonn\Cassandra\Eloquent;
 
 use Cassandra\Rows;
-use lroman242\LaravelCassandra\Collection;
+use Cytonn\Cassandra\Collection;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 class Builder extends EloquentBuilder
@@ -54,7 +54,7 @@ class Builder extends EloquentBuilder
         if ($results instanceof Collection) {
             $results = $results->getRows();
         } elseif (!$results instanceof Rows) {
-            throw new \Exception('Invalid type of getPage response. Expected lroman242\LaravelCassandra\Collection or Cassandra\Rows');
+            throw new \Exception('Invalid type of getPage response. Expected Cytonn\Cassandra\Collection or Cassandra\Rows');
         }
 
         return $this->model->hydrateRows($results);
@@ -92,7 +92,7 @@ class Builder extends EloquentBuilder
         if ($results instanceof Collection) {
             $results = $results->getRows();
         } elseif (!$results instanceof Rows) {
-            throw new \Exception('Invalid type of getPage response. Expected lroman242\LaravelCassandra\Collection or Cassandra\Rows');
+            throw new \Exception('Invalid type of getPage response. Expected Cytonn\Cassandra\Collection or Cassandra\Rows');
         }
 
         return $this->model->hydrateRows($results);

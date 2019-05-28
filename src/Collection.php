@@ -1,9 +1,9 @@
 <?php
 
-namespace lroman242\LaravelCassandra;
+namespace Cytonn\Cassandra;
 
 use \Cassandra\Rows;
-use lroman242\LaravelCassandra\Eloquent\Model;
+use Cytonn\Cassandra\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Collection as BaseCollection;
