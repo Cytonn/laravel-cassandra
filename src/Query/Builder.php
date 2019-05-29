@@ -75,9 +75,11 @@ class Builder extends BaseBuilder
         if (!is_array(reset($values))) {
             $values = [$values];
 
+
+
             return $this->connection->insert(
                 $this->grammar->compileInsert($this, $values),
-                $this->cleanBindings(Arr::flatten($values, 1))
+                $this->cleanBindings($this->transformTypes(Arr::flatten($values, 1)))
             );
         }
 
@@ -202,5 +204,22 @@ class Builder extends BaseBuilder
         $this->fetchAllResults = true;
 
         return $result;
+    }
+
+    protected function transformTypes($values)
+    {
+        return array_map(function ($value){
+            return $this->transform($value);
+        }, $values);
+    }
+
+    private function transform($type)
+    {
+        if($type instanceof \DateTime) {
+            return new \Cassandra\Timestamp($type->getTimestamp());
+        }
+
+        
+        return $type;
     }
 }
