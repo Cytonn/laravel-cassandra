@@ -2,7 +2,7 @@
     "name": "cytonn/cassandra",
     "description": "A Cassandra based Eloquent model and Query builder for Laravel (Casloquent)",
     "keywords": ["laravel","eloquent","cassandra","csql","database","model","casloquent"],
-    "homepage": "https://example.com",
+    "homepage": "",
     "authors": [],
     "license" : "MIT",
     "require": {
