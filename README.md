@@ -1,13 +1,7 @@
-THIS PACKAGE IS DEPRECATED AND NO LONGER SUPPORTED.
-==============
-
-
 Laravel Cassandra
 ===============
 
 A Cassandra based Eloquent model and Query builder for Laravel (Casloquent)
-
-**WARNING**: This is a work in progress... not ready for usage yet.
 
 Installation
 ------------
@@ -16,9 +10,23 @@ Installation
 
  Laravel  | Package
 :---------|:----------
- 5.4.x - 5.5.x   | dev-master
+ 5.4.x - 5.5.x   | dev-master (legacy)
+ 9.x - 11.x      | ^2.0 (PHP 8.1+)
 
-Make sure you have the Cassandra PHP driver installed (version 1.2+). You can find more information at http://datastax.github.io/php-driver/.
+### Cassandra PHP extension (PHP 8)
+
+This package requires the `cassandra` PHP extension (declared as `ext-cassandra`).
+
+The original **DataStax PHP driver** (http://datastax.github.io/php-driver/) is
+**abandoned and does NOT support PHP 8**. For PHP 8.1+ install the maintained
+community fork instead, which provides the same `Cassandra\*` API:
+
+  - **he4rt/scylladb-php-driver** — https://github.com/he4rt/scylladb-php-driver
+
+Build/install it via PECL/pickle so the `cassandra` extension is loaded, then
+the `ext-cassandra` requirement is satisfied. If composer install must run on a
+box without the extension (e.g. CI that doesn't exercise Cassandra), use
+`--ignore-platform-req=ext-cassandra`.
 
 Installation using composer:
 

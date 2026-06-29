@@ -8,6 +8,7 @@ use Cassandra\Timestamp;
 use Cytonn\Cassandra\Collection;
 use Cytonn\Cassandra\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 abstract class Model extends BaseModel
@@ -75,25 +76,6 @@ abstract class Model extends BaseModel
         }
 
         return parent::asDateTime($value);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function originalIsNumericallyEquivalent($key)
-    {
-        $current = $this->attributes[$key];
-        $original = $this->original[$key];
-
-        // Date comparison.
-        if (in_array($key, $this->getDates())) {
-            $current = $current instanceof Timestamp ? $this->asDateTime($current) : $current;
-            $original = $original instanceof Timestamp ? $this->asDateTime($original) : $original;
-
-            return $current == $original;
-        }
-
-        return parent::originalIsNumericallyEquivalent($key);
     }
 
     /**
@@ -177,17 +159,20 @@ abstract class Model extends BaseModel
     /**
      * Determine if the new and old values for a given key are equivalent.
      *
+     * Laravel 5.8+ changed this signature from ($key, $current) to ($key);
+     * the current value is read from $this->attributes to match the base.
+     *
      * @param  string $key
-     * @param  mixed $current
      * @return bool
      */
-    public function originalIsEquivalent($key, $current)
+    public function originalIsEquivalent($key)
     {
         if (!array_key_exists($key, $this->original)) {
             return false;
         }
 
-        $original = $this->getOriginal($key);
+        $current = Arr::get($this->attributes, $key);
+        $original = Arr::get($this->original, $key);
 
         if ($current === $original) {
             return true;

@@ -4,6 +4,7 @@ namespace Cytonn\Cassandra;
 
 use Cassandra;
 use Cassandra\BatchStatement;
+use Illuminate\Support\Arr;
 
 class Connection extends \Illuminate\Database\Connection
 {
@@ -50,7 +51,7 @@ class Connection extends \Illuminate\Database\Connection
         }
 
         // You can pass options directly to the Cassandra constructor
-        $options = array_get($config, 'options', []);
+        $options = Arr::get($config, 'options', []);
 
         // Create the connection
         $this->cluster = $this->createCluster($config, $options);
