@@ -360,7 +360,7 @@ class Connection extends \Illuminate\Database\Connection
      *
      * @return void
      */
-    protected function reconnectIfMissingConnection()
+    public function reconnectIfMissingConnection()
     {
         if (is_null($this->session)) {
             $this->session = $this->createCluster($this->config, [])->connect($this->keyspace);
