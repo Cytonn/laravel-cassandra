@@ -8,6 +8,7 @@ use Cassandra\Timestamp;
 use Cytonn\Cassandra\Collection;
 use Cytonn\Cassandra\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 abstract class Model extends BaseModel
@@ -177,14 +178,24 @@ abstract class Model extends BaseModel
     /**
      * Determine if the new and old values for a given key are equivalent.
      *
+     * $current is optional for parity with Illuminate\Database\Eloquent\
+     * Model::originalIsEquivalent($key) (Laravel 8+, PHP 8 rejects a
+     * mismatched override as a fatal LSP violation) - when omitted, it's
+     * derived from $this->attributes the same way the parent class does
+     * internally, rather than requiring the caller to pass it explicitly.
+     *
      * @param  string $key
      * @param  mixed $current
      * @return bool
      */
-    public function originalIsEquivalent($key, $current)
+    public function originalIsEquivalent($key, $current = null)
     {
         if (!array_key_exists($key, $this->original)) {
             return false;
+        }
+
+        if (func_num_args() < 2) {
+            $current = Arr::get($this->attributes, $key);
         }
 
         $original = $this->getOriginal($key);
