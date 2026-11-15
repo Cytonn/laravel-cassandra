@@ -73,15 +73,16 @@ class Connection extends \Illuminate\Database\Connection
      * Begin a fluent query against a database table.
      *
      * @param  string  $table
+     * @param  string|null  $as
      * @return Query\Builder
      */
-    public function table($table)
+    public function table($table, $as = null)
     {
         $processor = $this->getPostProcessor();
 
         $query = new Query\Builder($this, null, $processor);
 
-        return $query->from($table);
+        return $query->from($table, $as);
     }
 
     /**
