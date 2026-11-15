@@ -344,7 +344,7 @@ class Connection extends \Illuminate\Database\Connection
      */
     protected function getDefaultQueryGrammar()
     {
-        return new Query\Grammar();
+        return new Query\Grammar($this);
     }
 
     /**
